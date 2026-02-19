@@ -6,7 +6,7 @@ function TodoItem({ list, handleDelete, toggleComplete }) {
     <ul className="list-group list-group-flush mt-3">
       {list.map((item, index) => (
         <li
-          key={index}
+          key={item.id}
           // d-flex aligns items in a row, justify-content-between pushes delete to the right
           className="list-group-item d-flex justify-content-between align-items-center border-0 px-0"
         >
@@ -15,7 +15,7 @@ function TodoItem({ list, handleDelete, toggleComplete }) {
               className="form-check-input mt-0" // mt-0 centers it vertically
               type="checkbox"
               checked={item.completed}
-              onChange={() => toggleComplete(index)}
+              onChange={() => toggleComplete(item.id)}
               style={{ cursor: "pointer", width: "20px", height: "20px" }}
             />
             <label
@@ -27,14 +27,14 @@ function TodoItem({ list, handleDelete, toggleComplete }) {
                 fontSize: "1.1rem",
               }}
               // When you click the text, it should also toggle the checkbox!
-              onClick={() => toggleComplete(index)}
+              onClick={() => toggleComplete(item.id)}
             >
               {item.text}
             </label>
           </div>
 
           <button
-            onClick={() => handleDelete(index)}
+            onClick={() => handleDelete(item.id)}
             type="button"
             className="btn btn-sm btn-outline-danger border-0" // 'border-0' makes it look cleaner
           >
